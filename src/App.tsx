@@ -19,6 +19,9 @@ function App() {
     return (
         <div>
             <h1>Tasks</h1>
+            <label htmlFor="task-input">type task</label>
+            <input id="task-input" />
+            <button type="submit">add</button>
             <ul>
                 {
                     tasks.map((task) => (
