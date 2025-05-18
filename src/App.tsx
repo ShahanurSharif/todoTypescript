@@ -1,33 +1,24 @@
-type Priority = 'low' | 'medium' | 'high';
+import {useState} from 'react'
 
+type Priority = 'low' | 'medium' | 'high'
 type Task = {
-    id: number;
-    isCompleted: boolean;
-    priority: Priority;
-    title: string;
-};
+    id: number,
+    title: string,
+    isCompleted: boolean,
+    priority?: Priority
+}
 
 function App() {
-    const tasks: Task[] = [
-        {
-            id: 1,
-            isCompleted: false,
-            priority: 'low',
-            title: 'Task 1',
-        }
-    ];
+    const tasks: Task[] = [{id:1, title:'learn react', isCompleted: false}]
+    const [taskName, setTaskName] = useState('')
     return (
         <div>
             <h1>Tasks</h1>
-            <label htmlFor="task-input">type task</label>
-            <input id="task-input" />
-            <button type="submit">add</button>
+            <label htmlFor="task-input">add task:</label>
+            <input type="text" id="task-input" value={taskName} onChange={(e)=>setTaskName(e.target.value)}/>
+            <button onClick={()=>console.log(taskName)}>Add</button>
             <ul>
-                {
-                    tasks.map((task) => (
-                        <li key={task.id}>{task.title}</li>
-                    ))
-                }
+                {tasks.map(task => <li key={task.id}>{task.title}</li>)}
             </ul>
         </div>
     )
